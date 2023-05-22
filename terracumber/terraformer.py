@@ -65,7 +65,7 @@ class Terraformer:
                     replacement = ''.join(replacement_list)
                     placeholder = '//' + node + '_additional_repos'
                     n_replaced = 0
-                    println("%s" % placeholder)
+                    print("Placeholder %s" % placeholder)
                     for line in fileinput.input("%s/main.tf" % self.terraform_path, inplace=True):
                         (new_line, n) = subn(placeholder, replacement, line)
                         print(new_line, end='')
