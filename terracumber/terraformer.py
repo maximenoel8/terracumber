@@ -63,9 +63,8 @@ class Terraformer:
                         replacement_list.append('\n\t"{}"="{}",'.format(name, url))
                     replacement_list.append("\n}")
                     replacement = ''.join(replacement_list)
-                    placeholder = '//' + node + '_additional_repos'
+                    placeholder = '//' + node.replace('_', '-') + '_additional_repos'
                     n_replaced = 0
-                    print("Placeholder %s" % placeholder)
                     for line in fileinput.input("%s/main.tf" % self.terraform_path, inplace=True):
                         (new_line, n) = subn(placeholder, replacement, line)
                         print(new_line, end='')
