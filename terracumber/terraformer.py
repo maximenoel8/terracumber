@@ -109,7 +109,7 @@ class Terraformer:
         command_arguments = [self.terraform_bin, "apply", "-auto-approve", f"-parallelism={parallelism}"]
         for file in self.tfvars_files:
             command_arguments.append(f"-var-file={file}")
-#         return self.__run_command(command_arguments)
+        return self.__run_command(command_arguments)
 
     def destroy(self):
         """Run terraform destroy"""
