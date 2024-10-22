@@ -17,6 +17,7 @@ Extracts the default modules that should not be removed.
 """
 def get_default_modules(maintf_content, tf_resources_to_delete):
     module_names = re.findall(r'module\s+"([^"]+)"', maintf_content)
+    logger.info(f"Modules names are {module_names}")
     exclusions = ['minion', 'client']
 
     if tf_resources_to_delete:
@@ -26,8 +27,6 @@ def get_default_modules(maintf_content, tf_resources_to_delete):
             exclusions.append('proxy')
         if 'proxy_containerized' in tf_resources_to_delete:
             exclusions.append('proxy_containerized')
-        if 'terminal' in tf_resources_to_delete:
-            exclusions.append('terminal')
         if 'monitoring-server' in tf_resources_to_delete:
             exclusions.append('monitoring-server')
 
