@@ -145,11 +145,14 @@ def parse_args():
 
 
 def read_config(tf_file, tf_variables_description_file, tf_variables_product_file):
-    """Read and validate the config from a tf file"""
-    if tf_variables_description_file != '':
-        config = terracumber.config.read_config(tf_variables_description_file)
-    else:
-        config = terracumber.config.read_config(tf_file)
+    """Read and validate the config from a HCL file"""
+    config = {}
+    if tf_variables_description_file:
+        config.update(terracumber.config.read_config(tf_variables_description_file))
+
+    # Read the second configuration file (tf_file) and merge it with the previous config
+    config.update(terracumber.config.read_config(tf_file))
+
     for required in ['URL_PREFIX', 'CUCUMBER_COMMAND', 'CUCUMBER_BRANCH', 'CUCUMBER_RESULTS',
                      'MAIL_SUBJECT', 'MAIL_TEMPLATE', 'MAIL_SUBJECT_ENV_FAIL',
                      'MAIL_TEMPLATE_ENV_FAIL', 'MAIL_FROM', 'MAIL_TO']:
