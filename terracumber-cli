@@ -151,7 +151,7 @@ def read_config(tf_file, tf_variables_description_file, tf_variables_product_fil
         config.update(terracumber.config.read_config(tf_variables_description_file))
 
     # Read the second configuration file (tf_file) and merge it with the previous config
-    config.update(terracumber.config.read_config(tf_file))
+    # config.update(terracumber.config.read_config(tf_file))
 
     for required in ['URL_PREFIX', 'CUCUMBER_COMMAND', 'CUCUMBER_BRANCH', 'CUCUMBER_RESULTS',
                      'MAIL_SUBJECT', 'MAIL_TEMPLATE', 'MAIL_SUBJECT_ENV_FAIL',
