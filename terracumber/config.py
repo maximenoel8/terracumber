@@ -10,6 +10,8 @@ def read_config(path):
             return config
         for var_block in hcl_data['variable']:
             for var_name, var_attributes in var_block.items():
+                # Some python-hcl2 versions include surrounding quotes in the key name
+                var_name = var_name.strip('"')
                 # python-hcl2 <4.0 wraps each variable's attributes in a list
                 if isinstance(var_attributes, list):
                     if not var_attributes:
