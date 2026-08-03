@@ -24,9 +24,16 @@ def to_hcl(obj, indent_level=0):
                 lines.append(f"{indent}{key} = {formatted_value}")
         return "\n".join(lines)
     elif isinstance(obj, list):
+        if obj and isinstance(obj[0], dict):
+            inner = ",\n".join(f"{{\n{to_hcl(item, indent_level + 1)}\n{indent}}}" for item in obj)
+            return f"[\n{inner}\n{indent}]"
         items = [to_hcl(item, 0) for item in obj]
         return f"[{', '.join(items)}]"
     elif isinstance(obj, str):
+        # hcl2 may return strings with surrounding quotes preserved as literal characters
+        # (e.g. '"value"' instead of 'value'). Strip them before re-quoting.
+        if len(obj) >= 2 and obj.startswith('"') and obj.endswith('"'):
+            obj = obj[1:-1]
         safe_str = obj.replace('"', '\\"')
         return f'"{safe_str}"'
     elif isinstance(obj, bool):
