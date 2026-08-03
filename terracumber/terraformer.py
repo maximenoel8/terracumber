@@ -148,6 +148,8 @@ class Terraformer:
         # on the resource type.
         all_resources = self.__run_command(
             [self.terraform_bin, "state", "list"], True)
+        if not isinstance(all_resources, list):
+            return []
         if not what:
             return all_resources
         filtered_resources = []
