@@ -11,7 +11,7 @@ Until [SUSE's Hackweek 18](https://hackweek.opensuse.org/projects/terracumber-py
 No. It should work with any other environment as long as:
 
 1. It is created with Terraform/openTofu.
-2. The Terraform//openTofu stack has an structure similar to [sumaform](https://github.com/uyuni-project/sumaform), with several backends, and and output 'root' that contains the 'hostname' in the same way sumaform does.
+2. The Terraform/openTofu stack has a structure similar to [sumaform](https://github.com/uyuni-project/sumaform), with several backends, and and output 'root' that contains the 'hostname' in the same way sumaform does.
 3. The cucumber run produces one or more of the following outputs **[1]**:
    * Files:
      - `output*.html`
