@@ -152,10 +152,9 @@ def parse_args():
 
 def read_config(tf_file, tf_variables_description_file, tf_variables_product_file, skip_validation=False):
     """Read and validate the config from a tf file"""
+    config = terracumber.config.read_config(tf_file)
     if tf_variables_description_file != '':
-        config = terracumber.config.read_config(tf_variables_description_file)
-    else:
-        config = terracumber.config.read_config(tf_file)
+        config.update(terracumber.config.read_config(tf_variables_description_file))
     if not skip_validation:
         for required in ['URL_PREFIX', 'CUCUMBER_COMMAND', 'CUCUMBER_BRANCH', 'CUCUMBER_RESULTS',
                          'MAIL_SUBJECT', 'MAIL_TEMPLATE', 'MAIL_SUBJECT_ENV_FAIL',
