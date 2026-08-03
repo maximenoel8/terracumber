@@ -4,14 +4,14 @@ When [Terraform](https://www.terraform.io/) meets [Cucumber](https://cucumber.io
 
 This is exactly what [Uyuni](https://www.uyuni-project.org/) and [SUSE Multi-Linux Manager](https://www.suse.com/products/multi-linux-manager/) are using for part of the testing. We create an environment with terraform (sumaform) and then we run tests with Cucumber. Alternatively, terracumber can be also used to run Salt tests with [Salt Shaker](https://github.com/openSUSE/salt-test).
 
-Until [SUSE's Hackweek 18](https://hackweek.suse.com/projects/terracumber-python-replacement-for-sumaform-test-runner) we were using a set of bash scripts, completely ad-hoc and hard to maintain and extend, and that is how Terracumber was born.
+Until [SUSE's Hackweek 18](https://hackweek.opensuse.org/projects/terracumber-python-replacement-for-sumaform-test-runner) we were using a set of bash scripts, completely ad-hoc and hard to maintain and extend, and that is how Terracumber was born.
 
 ## Does this only work with sumaform?
 
 No. It should work with any other environment as long as:
 
-1. It is created with terraform.
-2. The terraform has an structure similar to [sumaform](https://github.com/uyuni-project/sumaform), with several backends, and and output 'root' that contains the 'hostname' in the same way sumaform does.
+1. It is created with Terraform/openTofu.
+2. The Terraform/openTofu stack has a structure similar to [sumaform](https://github.com/uyuni-project/sumaform), with several backends, and and output 'root' that contains the 'hostname' in the same way sumaform does.
 3. The cucumber run produces one or more of the following outputs **[1]**:
    * Files:
      - `output*.html`
@@ -40,7 +40,7 @@ No. It should work with any other environment as long as:
 
 `paramiko` is usually part of the base system packages. `python-hcl2` and `pygit2` are packaged in the [Uyuni utils](https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Utils/) repository.
 
-Terraform must be configured as needed to run the terraform templates you are going to use.
+Terraform/openTofu must be configured as needed to run the templates you are going to use.
 
 ### Quickstart
 
